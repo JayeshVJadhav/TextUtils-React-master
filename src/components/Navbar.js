@@ -1,5 +1,5 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 export default function Navbar(props) {
@@ -19,22 +19,24 @@ export default function Navbar(props) {
                             <Link className="nav-link" to="/about">{props.aboutText}</Link>
                         </li>
                     </ul>
-                    <div className={`form-check form-switch text-${props.mode==='light'?'dark':'light'}`}>
-                        <input className="form-check-input" onClick={props.toggleMode} type="checkbox" id="flexSwitchCheckDefault"/>
-                        <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Enable DarkMode</label>
-                    </div>
+                    <button className="theme-toggle" onClick={props.toggleMode} type="button" aria-label="Toggle color mode">
+                        <span>{props.mode === 'light' ? '🌙' : '☀️'}</span>
+                        <span>{props.mode === 'light' ? 'Dark mode' : 'Light mode'}</span>
+                    </button>
                 </div>
             </div>
         </nav>
-    )
+    );
 }
 
 Navbar.propTypes = {
     title: PropTypes.string.isRequired,
-    aboutText: PropTypes.string.isRequired
-}
+    aboutText: PropTypes.string.isRequired,
+    mode: PropTypes.string.isRequired,
+    toggleMode: PropTypes.func.isRequired
+};
 
 Navbar.defaultProps = {
     title: 'Set title here',
     aboutText: 'About'
-  };
+};
